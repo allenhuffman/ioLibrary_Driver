@@ -58,6 +58,24 @@
 //M20150401 : Remove ; in the default callback function such as wizchip_cris_enter(), wizchip_cs_select() and etc.
 /////////////
 
+// Prototypes to avoid compiler warnings:
+void wizchip_cris_enter(void);
+void wizchip_cris_exit(void);
+void wizchip_cs_select(void);
+void wizchip_cs_deselect(void);
+iodata_t wizchip_bus_readdata(uint32_t AddrSel);
+void wizchip_bus_writedata(uint32_t AddrSel, iodata_t wb);
+void wizchip_bus_read_buf(uint32_t AddrSel, iodata_t* buf, int16_t len, uint8_t addrinc);
+void wizchip_bus_write_buf(uint32_t AddrSel, iodata_t* buf, int16_t len, uint8_t addrinc);
+iodata_t wizchip_bus_readbyte(void);
+uint8_t wizchip_spi_readbyte(void);
+void wizchip_spi_writebyte(uint8_t wb);
+void wizchip_spi_readburst(uint8_t* pBuf, uint16_t len);
+void wizchip_spi_writeburst(uint8_t* pBuf, uint16_t len);
+void wizchip_qspi_read(uint8_t opcode, uint16_t addr, uint8_t* pBuf, uint16_t len);
+void wizchip_qspi_write(uint8_t opcode, uint16_t addr, uint8_t* pBuf, uint16_t len);
+void reg_wizchip_busbuf_cbfunc(void(*busbuf_rb)(uint32_t AddrSel, iodata_t* pBuf, int16_t len, uint8_t addrinc), void (*busbuf_wb)(uint32_t AddrSel, iodata_t* pBuf, int16_t len, uint8_t addrinc));
+
 /**
     @brief Default function to enable interrupt.
     @note This function help not to access wrong address. If you do not describe this function or register any functions,
