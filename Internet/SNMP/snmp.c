@@ -3,6 +3,7 @@
 #include <ctype.h>
 #include <stdarg.h>
 #include <time.h>
+#include <inttypes.h>
 
 #include "socket.h"
 #include "snmp.h"
@@ -146,7 +147,7 @@ int32_t snmpd_run(void) {
 
     uint8_t svr_addr[6];
     uint16_t  svr_port;
-#if 1
+#if ((_WIZCHIP_ == 6100) || (_WIZCHIP_ == 6300))
     // 20231019 taylor
     uint8_t addr_len;
 #endif
@@ -713,7 +714,8 @@ void ipToByteArray(int8_t *ip, uint8_t *pDes) {
         }
     }
 
-    sscanf((char const*)buff, "%u %u %u %u", &ip1, &ip2, &ip3, &ip4);
+    //sscanf((char const*)buff, "%u %u %u %u", &ip1, &ip2, &ip3, &ip4);
+    sscanf((char const*)buff, "%" PRIu32 " %" PRIu32 " %" PRIu32 " %" PRIu32, &ip1, &ip2, &ip3, &ip4);
     pDes[0] = ip1; pDes[1] = ip2; pDes[2] = ip3; pDes[3] = ip4;
 }
 
