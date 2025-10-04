@@ -127,7 +127,7 @@ void 	wizchip_bus_writedata(uint32_t AddrSel, iodata_t wb)  {
     @sa wizchip_bus_write_buf()
 */
 void wizchip_bus_read_buf(uint32_t AddrSel, iodata_t* buf, int16_t len, uint8_t addrinc) {
-    uint16_t i;
+    int16_t i;
     if (addrinc) {
         addrinc = sizeof(iodata_t);
     }
@@ -151,7 +151,7 @@ void wizchip_bus_read_buf(uint32_t AddrSel, iodata_t* buf, int16_t len, uint8_t 
     @sa wizchip_bus_read_buf()
 */
 void wizchip_bus_write_buf(uint32_t AddrSel, iodata_t* buf, int16_t len, uint8_t addrinc) {
-    uint16_t i;
+    int16_t i;
     if (addrinc) {
         addrinc = sizeof(iodata_t);
     }
@@ -179,7 +179,7 @@ uint8_t wizchip_spi_readbyte(void)        {
     null function is called.
 */
 //void 	wizchip_spi_writebyte(uint8_t wb) {};
-void 	wizchip_spi_writebyte(uint8_t wb) {}
+void 	wizchip_spi_writebyte(uint8_t wb) { (void)wb; }
 
 /**
     @brief Default function to burst read in SPI interface.
@@ -221,14 +221,14 @@ void 	wizchip_spi_writeburst(uint8_t* pBuf, uint16_t len) {}
     @note This function help not to access wrong address. If you do not describe this function or register any functions,
     null function is called.
 */
-void wizchip_qspi_read(uint8_t opcode, uint16_t addr, uint8_t* pBuf, uint16_t len) {}
+void wizchip_qspi_read(uint8_t opcode, uint16_t addr, uint8_t* pBuf, uint16_t len) { (void)opcode; (void)addr; (void)pBuf; (void)len; }
 
 /**
     @brief Default function to write in QSPI interface.
     @note This function help not to access wrong address. If you do not describe this function or register any functions,
     null function is called.
 */
-void wizchip_qspi_write(uint8_t opcode, uint16_t addr, uint8_t* pBuf, uint16_t len) {}
+void wizchip_qspi_write(uint8_t opcode, uint16_t addr, uint8_t* pBuf, uint16_t len) { (void)opcode; (void)addr; (void)pBuf; (void)len; }
 
 #endif
 /**
@@ -270,7 +270,9 @@ _WIZCHIP  WIZCHIP = {
             //wizchip_bus_readbyte,
             //wizchip_bus_writebyte
             wizchip_bus_readdata,
-            wizchip_bus_writedata
+            wizchip_bus_writedata,
+            NULL,
+            NULL
         },
 
     }

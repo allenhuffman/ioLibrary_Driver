@@ -196,8 +196,8 @@ inline uint8_t inline_CheckAddrlen_W6x00(void) {
 
 int8_t socket(uint8_t sn, uint8_t protocol, uint16_t port, uint8_t flag) {
 
-    uint8_t taddr[16];
-    uint16_t local_port = 0;
+    //uint8_t taddr[16];
+    //uint16_t local_port = 0;
     CHECK_SOCKNUM();
     switch (protocol & 0x0F) {
 #ifdef IPV6_AVAILABLE
@@ -1033,6 +1033,7 @@ static int32_t recvfrom_IO_6(uint8_t sn, uint8_t * buf, uint16_t len, uint8_t * 
         while (getSn_CR(sn));
 
 #else
+        (void)addrlen; // Unused
         if (sock_remained_size[sn] == 0) {
             wiz_recv_data(sn, head, 8);
             setSn_CR(sn, Sn_CR_RECV);
