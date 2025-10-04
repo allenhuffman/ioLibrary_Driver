@@ -59,6 +59,11 @@
 //#define SOCK_ANY_PORT_NUM  0xC000;
 #define SOCK_ANY_PORT_NUM  0xC000
 
+// Static prototypes
+static int8_t connect_IO_6(uint8_t sn, uint8_t * addr, uint16_t port, uint8_t addrlen);
+static int32_t sendto_IO_6(uint8_t sn, uint8_t * buf, uint16_t len, uint8_t * addr, uint16_t port, uint8_t addrlen);
+static int32_t recvfrom_IO_6(uint8_t sn, uint8_t * buf, uint16_t len, uint8_t * addr, uint16_t *port, uint8_t *addrlen);
+
 static uint16_t sock_any_port = SOCK_ANY_PORT_NUM;
 static uint16_t sock_io_mode = 0;
 static uint16_t sock_is_sending = 0;
